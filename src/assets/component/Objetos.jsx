@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import '../styles/objetos.css';
+import ProductForm from '../component/modificacionP';
 
 const Objetos = () => {
   const [producto, setProducto] = useState({
@@ -12,6 +13,23 @@ const Objetos = () => {
 
   const [productos, setProductos] = useState([]);
   const [busqueda, setBusqueda] = useState('');
+  const [modoEdicion, setModoEdicion] = useState(false);
+  const [productoEditandoId, setProductoEditandoId] = useState(null);  
+
+  const guardarCambios = () => {
+  const actualizados = productos.map((p) =>
+    p.id === productoEditandoId ? { ...producto } : p
+  );
+  setProductos(actualizados);
+  setProducto({ id: '', nombre: '', precio: '', descuento: '', stock: '' });
+  setModoEdicion(false);
+  setProductoEditandoId(null);
+};
+ const comenzarEdicion = (p) => {
+  setProducto({ ...p });
+  setModoEdicion(true);
+  setProductoEditandoId(p.id);
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,44 +74,12 @@ const Objetos = () => {
   return (
     <div className="contenedor">
       <h2>Agregar Producto</h2>
-      <div className="formulario">
-        <input
-          type="text"
-          name="id"
-          placeholder="ID"
-          value={producto.id}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="nombre"
-          placeholder="Nombre"
-          value={producto.nombre}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="precio"
-          placeholder="Precio"
-          value={producto.precio}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="descuento"
-          placeholder="% Descuento"
-          value={producto.descuento}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="stock"
-          placeholder="Stock"
-          value={producto.stock}
-          onChange={handleChange}
-        />
-        <button onClick={agregarProducto}>Agregar</button>
-      </div>
+      <ProductForm
+  producto={producto}
+  handleChange={handleChange}
+  modoEdicion={modoEdicion}
+  onSubmit={modoEdicion ? guardarCambios : agregarProducto}
+/>
 
       {/* Barra de búsqueda */}
       <div className="busqueda">
@@ -128,6 +114,9 @@ const Objetos = () => {
               <div>{descuento}%</div>
               <div>${precioFinal.toFixed(2)}</div>
               <div>{p.stock}</div>
+              <div> 
+                <button onClick={() => comenzarEdicion(p)}>Editar</button>
+                </div>
             </div>
           );
         })}
