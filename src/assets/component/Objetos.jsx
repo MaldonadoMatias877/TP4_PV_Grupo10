@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import '../styles/objetos.css';
 
 const Objetos = () => {
@@ -11,6 +11,7 @@ const Objetos = () => {
   });
 
   const [productos, setProductos] = useState([]);
+  const [busqueda, setBusqueda] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +40,18 @@ const Objetos = () => {
 
     console.log('Productos:', nuevosProductos);
   };
+
+  // Filtrado con useMemo
+  const productosFiltrados = useMemo(() => {
+    const valorBuscado = busqueda.toLowerCase();
+
+    console.log('id o nombre: ', valorBuscado);
+
+    return productos.filter((p) =>
+      p.id.toLowerCase().includes(valorBuscado) ||
+      p.nombre.toLowerCase().includes(valorBuscado)
+    );
+  }, [productos, busqueda]);
 
   return (
     <div className="contenedor">
@@ -82,6 +95,16 @@ const Objetos = () => {
         <button onClick={agregarProducto}>Agregar</button>
       </div>
 
+      {/* Barra de búsqueda */}
+      <div className="busqueda">
+        <input
+          type="text"
+          placeholder="Buscar por nombre o ID"
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+      </div>
+
       <h3>Lista de Productos</h3>
       <div className="tabla">
         <div className="encabezado">
@@ -92,7 +115,7 @@ const Objetos = () => {
           <div>Precio Final</div>
           <div>Stock</div>
         </div>
-        {productos.map((p, index) => {
+        {productosFiltrados.map((p, index) => {
           const precioOriginal = parseFloat(p.precio);
           const descuento = parseFloat(p.descuento) || 0;
           const precioFinal = precioOriginal - (precioOriginal * descuento) / 100;

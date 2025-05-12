@@ -72,3 +72,7 @@ h2, h3 {
 .fila:nth-child(even) {
   background-color: white;
 }
+
+.busqueda {
+  position: absolute;
+}
