@@ -1,14 +1,18 @@
-  /* Estilo general del contenedor */
+/* Contenedor principal */
 .contenedor {
-  max-width: 800px;
+  max-width: 900px;
   margin: 40px auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* Título */
+/* Títulos */
 h2, h3 {
-  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -40,20 +44,35 @@ h2, h3 {
 }
 
 .formulario button:hover {
-  background-color: blue;
+  background-color: darkblue;
+}
+
+/* Búsqueda centrada */
+.busqueda {
+  margin-bottom: 20px;
+}
+
+.busqueda input {
+  padding: 8px;
+  font-size: 14px;
+  width: 240px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
 }
 
 /* Tabla */
 .tabla {
   width: 100%;
+  max-width: 800px;
 }
 
-.encabezado, .fila {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid lightgray;
-  padding: 10px 0;
-  font-size: 14px;
+.encabezado,
+.fila {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding: 6px;
+  border-bottom: 1px solid lightgrey;
   align-items: center;
 }
 
@@ -64,7 +83,6 @@ h2, h3 {
 
 .encabezado > div,
 .fila > div {
-  width: 16.66%; /* 6 columnas iguales: ID, Nombre, Precio, % Descuento, Precio Final, Stock */
   text-align: center;
   padding: 4px;
 }
@@ -73,6 +91,12 @@ h2, h3 {
   background-color: white;
 }
 
-.busqueda {
-  position: absolute;
+.fila button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: lightseagreen;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

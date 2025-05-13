@@ -100,6 +100,7 @@ const Objetos = () => {
           <div>% Descuento</div>
           <div>Precio Final</div>
           <div>Stock</div>
+          <div> - </div>
         </div>
         {productosFiltrados.map((p, index) => {
           const precioOriginal = parseFloat(p.precio);
@@ -114,9 +115,9 @@ const Objetos = () => {
               <div>{descuento}%</div>
               <div>${precioFinal.toFixed(2)}</div>
               <div>{p.stock}</div>
-              <div> 
+              <div>
                 <button onClick={() => comenzarEdicion(p)}>Editar</button>
-                </div>
+              </div>            
             </div>
           );
         })}
