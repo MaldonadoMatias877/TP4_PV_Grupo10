@@ -24,12 +24,12 @@ const Objetos = () => {
   setProducto({ id: '', nombre: '', precio: '', descuento: '', stock: '' });
   setModoEdicion(false);
   setProductoEditandoId(null);
-};
+  };
  const comenzarEdicion = (p) => {
   setProducto({ ...p });
   setModoEdicion(true);
   setProductoEditandoId(p.id);
-};
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,11 +75,11 @@ const Objetos = () => {
     <div className="contenedor">
       <h2>Agregar Producto</h2>
       <ProductForm
-  producto={producto}
-  handleChange={handleChange}
-  modoEdicion={modoEdicion}
-  onSubmit={modoEdicion ? guardarCambios : agregarProducto}
-/>
+      producto={producto}
+      handleChange={handleChange}
+      modoEdicion={modoEdicion}
+      onSubmit={modoEdicion ? guardarCambios : agregarProducto}
+      />
 
       {/* Barra de búsqueda */}
       <div className="busqueda">
