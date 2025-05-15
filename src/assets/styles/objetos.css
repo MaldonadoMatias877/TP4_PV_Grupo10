@@ -1,10 +1,14 @@
-/* Contenedor principal */
-.contenedor {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.contenedor {
+  width: 100vw;
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,57 +17,70 @@
 
 /* Títulos */
 h2, h3 {
+  text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
 /* Formulario */
 .formulario {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 30px;
   justify-content: center;
 }
 
 .formulario input {
-  padding: 8px;
-  font-size: 14px;
-  width: 120px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
+  padding: 10px;
+  font-size: 15px;
+  width: 140px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.formulario input:focus {
+  border-color: #0077ff;
+  outline: none;
 }
 
 .formulario button {
   padding: 10px 20px;
   font-size: 14px;
-  background-color: blue;
+  background-color: #0077ff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .formulario button:hover {
-  background-color: darkblue;
+  background-color: #005fcc;
 }
 
 /* Búsqueda centrada */
 .busqueda {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .busqueda input {
-  padding: 8px;
-  font-size: 14px;
-  width: 240px;
-  border: 1px solid lightgrey;
-  border-radius: 4px;
+  padding: 10px;
+  font-size: 15px;
+  width: 260px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 /* Tabla */
 .tabla {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
 .encabezado,
@@ -71,32 +88,35 @@ h2, h3 {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
-  padding: 6px;
-  border-bottom: 1px solid lightgrey;
+  padding: 10px;
   align-items: center;
+  text-align: center;
 }
 
 .encabezado {
+  background-color: #e6e6e6;
   font-weight: bold;
-  background-color: white;
-}
-
-.encabezado > div,
-.fila > div {
-  text-align: center;
-  padding: 4px;
 }
 
 .fila:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.fila:nth-child(odd) {
   background-color: white;
 }
 
 .fila button {
   padding: 6px 12px;
-  font-size: 12px;
-  background-color: lightseagreen;
+  font-size: 13px;
+  background-color: #20b2aa;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fila button:hover {
+  background-color: #178f86;
 }
