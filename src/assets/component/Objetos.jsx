@@ -1,6 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import '../styles/objetos.css';
+
 import ProductForm from '../component/modificacionP';
+import ProductList from '../component/ProductList'; 
+
 
 const Objetos = () => {
   const [producto, setProducto] = useState({
@@ -17,25 +20,26 @@ const Objetos = () => {
   const [productoEditandoId, setProductoEditandoId] = useState(null);  
 
   const guardarCambios = () => {
-  const actualizados = productos.map((p) =>
-    p.id === productoEditandoId ? { ...producto } : p
-  );
-  setProductos(actualizados);
-  setProducto({ id: '', nombre: '', precio: '', descuento: '', stock: '' });
-  setModoEdicion(false);
-  setProductoEditandoId(null);
+    const actualizados = productos.map((p) =>
+      p.id === productoEditandoId ? { ...producto } : p
+    );
+    setProductos(actualizados);
+    setProducto({ id: '', nombre: '', precio: '', descuento: '', stock: '' });
+    setModoEdicion(false);
+    setProductoEditandoId(null);
   };
- const comenzarEdicion = (p) => {
-  setProducto({ ...p });
-  setModoEdicion(true);
-  setProductoEditandoId(p.id);
+
+  const comenzarEdicion = (p) => {
+    setProducto({ ...p });
+    setModoEdicion(true);
+    setProductoEditandoId(p.id);
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setProducto({
       ...producto,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
@@ -55,30 +59,34 @@ const Objetos = () => {
     const nuevosProductos = [...productos, nuevoProducto];
     setProductos(nuevosProductos);
     setProducto({ id: '', nombre: '', precio: '', descuento: '', stock: '' });
-
-    console.log('Productos:', nuevosProductos);
   };
 
   // Filtrado con useMemo
   const productosFiltrados = useMemo(() => {
     const valorBuscado = busqueda.toLowerCase();
-
-    console.log('id o nombre: ', valorBuscado);
-
     return productos.filter((p) =>
       p.id.toLowerCase().includes(valorBuscado) ||
       p.nombre.toLowerCase().includes(valorBuscado)
     );
   }, [productos, busqueda]);
 
+  //Eliminar con useCallback
+  const eliminarProducto = useCallback((id) => {
+    if (confirm('¿Estás seguro de eliminar este producto?')) {
+      setProductos((prevProductos) =>
+        prevProductos.filter((p) => p.id !== id)
+      );
+    }
+  }, []);
+
   return (
     <div className="contenedor">
       <h2>Agregar Producto</h2>
       <ProductForm
-      producto={producto}
-      handleChange={handleChange}
-      modoEdicion={modoEdicion}
-      onSubmit={modoEdicion ? guardarCambios : agregarProducto}
+        producto={producto}
+        handleChange={handleChange}
+        modoEdicion={modoEdicion}
+        onSubmit={modoEdicion ? guardarCambios : agregarProducto}
       />
 
       {/* Barra de búsqueda */}
@@ -92,36 +100,11 @@ const Objetos = () => {
       </div>
 
       <h3>Lista de Productos</h3>
-      <div className="tabla">
-        <div className="encabezado">
-          <div>ID</div>
-          <div>Nombre</div>
-          <div>Precio</div>
-          <div>% Descuento</div>
-          <div>Precio Final</div>
-          <div>Stock</div>
-          <div> - </div>
-        </div>
-        {productosFiltrados.map((p, index) => {
-          const precioOriginal = parseFloat(p.precio);
-          const descuento = parseFloat(p.descuento) || 0;
-          const precioFinal = precioOriginal - (precioOriginal * descuento) / 100;
-
-          return (
-            <div key={index} className="fila">
-              <div>{p.id}</div>
-              <div>{p.nombre}</div>
-              <div>${precioOriginal.toFixed(2)}</div>
-              <div>{descuento}%</div>
-              <div>${precioFinal.toFixed(2)}</div>
-              <div>{p.stock}</div>
-              <div>
-                <button onClick={() => comenzarEdicion(p)}>Editar</button>
-              </div>            
-            </div>
-          );
-        })}
-      </div>
+      <ProductList 
+        productos={productosFiltrados} 
+        onEditar={comenzarEdicion} 
+        onEliminar={eliminarProducto}
+      />
     </div>
   );
 };
