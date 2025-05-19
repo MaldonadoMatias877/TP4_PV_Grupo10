@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import '../styles/objetos.css';
 import ProductForm from '../component/modificacionP';
 import ProductList from '../component/ProductList';
+import SearchBar from '../component/SearchBar';
 
 const Objetos = () => {
   const [producto, setProducto] = useState({
@@ -113,6 +114,10 @@ const Objetos = () => {
     );
   }, [productosInactivos, busqueda]);
 
+  const mostrarCambiosProConsola = useEffect(() => {
+    console.log('Cambios por consola: ', productos);
+  }, [productos]);
+
   return (
     
    <div className="contenedor">
@@ -129,14 +134,10 @@ const Objetos = () => {
   </div>
 
   <div className="lista-wrapper">
-    <div className="busqueda">
-      <input
-        type="text"
-        placeholder="Buscar por nombre o ID"
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-      />
-    </div>
+    <SearchBar
+      valorBusqueda={busqueda}
+      onBusquedaChange={setBusqueda}
+    />
 
     <div className="lista-container">
       <h3>Lista de Productos</h3>
