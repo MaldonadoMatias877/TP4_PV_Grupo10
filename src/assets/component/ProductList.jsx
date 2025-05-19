@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductItem from './ProductItem';
 
-const ProductList = ({ productos, onEditar, onEliminar }) => {
+const ProductList = ({ productos, onEditar, onEliminar, onRestaurar, onActivar, listType }) => {
   return (
     <div className='lista-product-list'>
       <div className='product-header'>
@@ -15,11 +15,14 @@ const ProductList = ({ productos, onEditar, onEliminar }) => {
         <div className='product-cell'>Acciones</div>
       </div>
       {productos.map((producto) => (
-        <ProductItem 
+        <ProductItem
           key={producto.id}
           producto={producto}
           onEditar={onEditar}
           onEliminar={onEliminar}
+          onRestaurar={onRestaurar}
+          onActivar={onActivar}
+          listType={listType}
         />
       ))}
     </div>
