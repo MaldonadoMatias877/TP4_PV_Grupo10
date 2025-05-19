@@ -1,137 +1,269 @@
 /* Reset básico */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
-  
+
 /* Contenedor principal */
 .contenedor {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f7f9fc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f0f4f8; /* gris muy claro agradable */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-  
-  /* Formularios */
+
+/* Contenedor del formulario */
+.formulario-contenedor {
+  margin-bottom: 40px;  /* Más espacio abajo para separar */
+  padding: 20px;
+  background-color: #ffffff; /* fondo blanco */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  max-width: 600px; /* ancho máximo para no ser tan ancho */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Formularios */
 .formulario {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-  
+
 .formulario input[type="text"],
 .formulario input[type="number"] {
-    flex: 1 1 150px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  flex: 1 1 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-  
+
+
 .formulario .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
 }
-  
+
 .formulario button {
-    padding: 10px 16px;
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  padding: 10px 16px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-  
+
 .formulario button:hover {
-    background-color: #004d99;
+  background-color: #004d99;
 }
-  
-  /* Buscador */
+
+/* Buscador */
 .busqueda {
-    margin: 20px 0;
+  margin-bottom: 20px;
 }
-  
+
 .busqueda input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #bbb;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
 }
-  
-  /* Lista de productos */
+
+/* Contenedor para las listas */
+.lista-container {
+  background-color: #f9fafc; /* gris muy clarito distinto del formulario */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  max-width: 900px;
+  margin: 0 auto 40px auto; /* centrado horizontal, margen abajo */
+}
+
+/* Lista de productos */
 .lista-product-list {
-    width: 100%;
-    margin-top: 20px;
-    border-top: 2px solid #ccc;
+  width: 100%;
+  margin-top: 20px;
+  border-top: 2px solid #ccc;
 }
-  
+
 .product-header,
 .product-item {
-display: flex;
-padding: 10px;
-border-bottom: 1px solid #e0e0e0;
-background-color: #fff;
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
 }
 
 .product-header {
-font-weight: bold;
-background-color: #e9eff5;
+  font-weight: bold;
+  background-color: #e9eff5;
 }
 
 .product-cell {
-flex: 1;
-text-align: left;
-padding: 4px 8px;
-word-wrap: break-word;
+  flex: 1;
+  text-align: left;
+  padding: 4px 8px;
+  word-wrap: break-word;
 }
 
 /* Botones */
 .product-cell button {
-margin-right: 8px;
-padding: 6px 12px;
-font-size: 14px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
+  margin-right: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-editar {
-background-color: #ffcc00;
-color: #333;
+  background-color: #ffcc00;
+  color: #333;
 }
 
 .btn-editar:hover {
-background-color: #e6b800;
+  background-color: #e6b800;
 }
 
 .btn-eliminar {
-background-color: #ff4d4d;
-color: white;
+  background-color: #ff4d4d;
+  color: white;
 }
 
 .btn-eliminar:hover {
-background-color: #cc0000;
+  background-color: #cc0000;
+}
+
+/* Botones Mostrar/Ocultar generales */
+button {
+  margin-right: 12px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #004d99;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-.product-header, .product-item {
+  .product-header,
+  .product-item {
     flex-direction: column;
-}
+  }
 
-.product-cell {
+  .product-cell {
     width: 100%;
+  }
+
+  .formulario {
+    flex-direction: column;
+  }
 }
 
-.formulario {
-    flex-direction: column;
+/* Estados de productos */
+.product-item--eliminados {
+  background-color: #ffe0e0; /* Rojo claro */
+  color: #b30000;
 }
+
+.product-item--inactivos {
+  background-color: #c0c0c0; /* Gris más oscuro pero agradable */
+  color: #555;
 }
-  
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* o center si quieres vertical centrado también */
+  background-color: #f0f4f8;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+.contenedor {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* espacio entre formulario y lista */
+}
+
+/* Wrapper del formulario con fondo, borde y sombra propios */
+.formulario-wrapper {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 0 auto; /* centrar */
+}
+
+/* Wrapper de la lista con fondo, borde y sombra propios */
+.lista-wrapper {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  max-width: 1000px;
+  margin: 0 auto 40px auto; /* centrar con margen abajo */
+}
+.formulario input[name="stock"] {
+  flex: 0 0 80px; }
+  .product-header .product-cell:nth-child(1),
+.product-item .product-cell:nth-child(1) {
+  flex: 0 0 80px; /* ej: ID pequeño */
+}
+
+.product-header .product-cell:nth-child(2),
+.product-item .product-cell:nth-child(2) {
+  flex: 2 1 300px; /* nombre producto más ancho */
+}
+
+.product-header .product-cell:nth-child(3),
+.product-item .product-cell:nth-child(3) {
+  flex: 1 1 100px; /* precio */
+}
+
+.product-header .product-cell:nth-child(4),
+.product-item .product-cell:nth-child(4) {
+  flex: 1 1 100px; /* descuento */
+}
+
+.product-header .product-cell:nth-child(5),
+.product-item .product-cell:nth-child(5) {
+  flex: 1 1 80px; /* stock */
+}
+
+.product-header .product-cell:nth-child(6),
+.product-item .product-cell:nth-child(6) {
+  flex: 0 0 120px; /* acciones, botones */
+}
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -42,8 +42,8 @@ const ProductForm = ({ producto, handleChange, modoEdicion, onSubmit }) => {
       <label className="checkbox-label">
         <input
           type="checkbox"
-          name="estado"
-          checked={producto.estado || false}
+          name="activo"
+          checked={producto.activo || false}
           onChange={handleChange}
         />
         Activo
